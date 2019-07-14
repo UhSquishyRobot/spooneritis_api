@@ -2,6 +2,8 @@
 
 const mongoose = require('mongoose');
 
+const Schema = mongoose.Schema;
+
 const AnswerSchema = new Schema({
     riddle: {
         type: Schema.Types.ObjectId,
@@ -15,4 +17,4 @@ const AnswerSchema = new Schema({
     }
 }, { timestamps: true });
 
-module.exports = mongoose.model('Answer', AnswerSchema)
+module.exports = mongoose.model('Answer', AnswerSchema);

@@ -2,6 +2,7 @@
 
 const userController = require('../controllers/userController');
 const riddleContoller = require('../controllers/riddleController');
+const answerController = require('../controllers/answerController');
 
 const registerRoutes = function(app) {
     app.route('/users')
@@ -13,6 +14,9 @@ const registerRoutes = function(app) {
 
     app.route('/riddles')
         .post(riddleContoller.createRiddle)
+
+    app.route('/answers')
+        .post(answerController.createAnswer)
 }
 
 module.exports = registerRoutes;

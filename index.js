@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 
 const User = require('./api/models/user');
 const Riddle = require('./api/models/riddle');
+const Answer = require('./api/models/answer');
 
 const app = express();
 const port = process.env.PORT || 3000;
