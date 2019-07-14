@@ -14,7 +14,10 @@ const UserSchema = new Schema({
     password: {
         type: String,
         required: true
-    }
+    },
+    riddles: [{
+        type: Schema.Types.ObjectId, ref: 'Riddle'
+    }]
 }, { timestamps: true });
 
 UserSchema.pre('save', function(next) {
