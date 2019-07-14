@@ -12,6 +12,14 @@ exports.getUser = function(req, res) {
     })
 }
 
+exports.getUsers = function(req, res) {
+    User.find({}, function(err, users) {
+        err
+            ? res.send(err)
+            : res.json(users);
+    })
+}
+
 exports.createUser = function(req, res) {
     const user = new User(req.body);
 
