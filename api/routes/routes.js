@@ -14,6 +14,7 @@ const registerRoutes = function(app) {
 
     app.route('/riddles')
         .post(riddleContoller.createRiddle)
+        .get(riddleContoller.getRiddles)
 
     app.route('/answers')
         .post(answerController.createAnswer)
