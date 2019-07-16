@@ -11,6 +11,9 @@ const registerRoutes = function(app) {
 
     app.route('/users/:userId')
         .get(userController.getUser)
+        
+    app.route('/users/authenticate')
+        .post(userController.authenticate)
 
     app.route('/riddles')
         .post(riddleContoller.createRiddle)

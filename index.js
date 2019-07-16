@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require('cors');
+const jwt = require('./api/middleware/jwt');
 
 const User = require('./api/models/user');
 const Riddle = require('./api/models/riddle');
@@ -14,6 +16,8 @@ mongoose.connect('mongodb://localhost:27017/spooneritis', { useNewUrlParser: tru
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cors());
+app.use(jwt());
 
 const routes = require('./api/routes/routes');
 

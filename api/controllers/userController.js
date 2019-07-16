@@ -1,6 +1,8 @@
 'use strict';
 
 const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
+const config = require('../../config.json');
 
 const User = mongoose.model('User');
 
@@ -28,4 +30,20 @@ exports.createUser = function(req, res) {
             ? res.send(err)
             : res.json(user);
     })
+}
+
+exports.authenticate = function(req, res) {
+    User.findById(req.body.userId, function(err, user) {
+        if (err) res.send(err);
+
+        if (user) {
+            const token = jwt.sign({ sub: user.id }, config.secret);
+            
+            res.send({
+                userId: user.id,
+                username: user.username,
+                token: token
+            })
+        }
+    });
 }
