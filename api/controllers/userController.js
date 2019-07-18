@@ -33,15 +33,17 @@ exports.createUser = function(req, res) {
 }
 
 exports.authenticate = function(req, res) {
-    User.findById(req.body.userId, function(err, user) {
+    User.find({ username: req.body.username } , function(err, user) {
         if (err) res.send(err);
 
         if (user) {
             const token = jwt.sign({ sub: user.id }, config.secret);
             
             res.send({
-                userId: user.id,
-                username: user.username,
+                user: {
+                    id: user.id,
+                    username: user.username
+                },
                 token: token
             })
         }
