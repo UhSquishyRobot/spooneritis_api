@@ -37,7 +37,7 @@ exports.authenticate = function(req, res) {
         if (err) res.send(err);
 
         if (user) {
-            const token = jwt.sign({ sub: user.id }, config.secret);
+            const token = jwt.sign({ sub: user.id, exp: 25200 }, config.secret);
             
             res.send({
                 user: {

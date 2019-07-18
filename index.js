@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const jwt = require('./api/middleware/jwt');
+const errorHandler = require('./api/middleware/errorHandler');
 
 const User = require('./api/models/user');
 const Riddle = require('./api/models/riddle');
@@ -18,6 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 app.use(jwt());
+app.use(errorHandler);
 
 const routes = require('./api/routes/routes');
 
