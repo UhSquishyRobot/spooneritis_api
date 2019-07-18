@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
-const config = require('../../config.json');
+const config = process.env.JWT_SECRET;
 
 const User = mongoose.model('User');
 
@@ -37,7 +37,7 @@ exports.authenticate = function(req, res) {
         if (err) res.send(err);
 
         if (user) {
-            const token = jwt.sign({ sub: user.id, exp: 25200 }, config.secret);
+            const token = jwt.sign({ sub: user.id, exp: Date.now() + 604800000 }, config.secret);
             
             res.send({
                 user: {
