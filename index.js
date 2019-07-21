@@ -13,7 +13,10 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/spooneritis', { useNewUrlParser: true });
+
+const dbUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/spooneritis';
+
+mongoose.connect(dbUri, { useNewUrlParser: true });
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
